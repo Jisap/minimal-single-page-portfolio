@@ -49,7 +49,7 @@ const Header: FC = () => {
                 <rect x="3" y="7" width="18" height="2" fill="currentColor" />
               </svg>
             </div>
-            <button className="bg-red-orange-500 h-11 px-6 rounded-xl text-white border border-red-orange-500 uppercase">
+            <button className="hidden md:inline-flex items-center bg-red-orange-500 h-11 px-6 rounded-xl text-white border border-red-orange-500 uppercase">
               Contact Me
             </button>
           </div>
