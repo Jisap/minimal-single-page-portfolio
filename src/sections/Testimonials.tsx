@@ -41,7 +41,7 @@ const Testimonials: FC = () => {
 
   return (
     <section className="section">
-      <h2 className="text-4xl md:text-7xl flex flex-col overflow-hidden">
+      <h2 className="text-4xl md:text-7xl lg:text-8xl flex flex-col overflow-hidden">
         <span className="whitespace-nowrap">Some nice words from my past clients</span>
         <span className="whitespace-nowrap self-end text-red-orange-500">Some nice words from my past clients</span>
       </h2>
@@ -51,7 +51,7 @@ const Testimonials: FC = () => {
             index === testimonialIndex && (
               <div 
                 key={name}
-                className="grid md:grid-cols-5 md:gap-8 md:items-center"  
+                className="grid md:grid-cols-5 md:gap-8 lg:gap-16  md:items-center"  
               >
                 <div className="aspect-square md:aspect-[9/16] md:col-span-2">
                   <Image
@@ -64,14 +64,14 @@ const Testimonials: FC = () => {
                   />
                 </div>
                 <blockquote className="md:col-span-3">
-                  <div className="text-3xl md:text-5xl mt-8 md:mt-0">
+                  <div className="text-3xl md:text-5xl lg:text-6xl mt-8 md:mt-0">
                     <span>&ldquo;</span>
                     <span className="">
                       {quote}
                     </span>
                     <span>&rdquo;</span>
                   </div>
-                  <cite className="mt-4 md:mt-8 not-italic block md:text-lg">
+                  <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl">
                     {name}, {role} at {company}
                   </cite>
                 </blockquote>
@@ -79,7 +79,7 @@ const Testimonials: FC = () => {
             ))}
         </div>
 
-        <div className="flex gap-4 mt-6">
+        <div className="flex gap-4 mt-6 lg:mt-10">
           <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
