@@ -36,49 +36,56 @@ const testimonials = [
 ];
 
 const Testimonials: FC = () => {
+
+  const testimonialIndex = 0;
+
   return (
     <section className="section">
-      <h2 className="text-4xl flex flex-col overflow-hidden">
+      <h2 className="text-4xl md:text-7xl flex flex-col overflow-hidden">
         <span className="whitespace-nowrap">Some nice words from my past clients</span>
         <span className="whitespace-nowrap self-end text-red-orange-500">Some nice words from my past clients</span>
       </h2>
       <div className="container">
         <div className="mt-20">
-          {testimonials.map(({name, company, role, quote, image, imagePositionY}) => (
-            <div key={name}>
-              <div className="aspect-square">
-                <Image 
-                  src={image}
-                  alt={name}
-                  className="size-full object-cover"
-                  style={{
-                    objectPosition: `50% ${imagePositionY * 100}%`, // la posición vertical de la imagen será un porcentaje definido en el [] y la horizontal será el 50%
-                  }}
-                />
-              </div>
-              <blockquote>
-                <div className="text-3xl mt-8">
-                  <span>&ldquo;</span>
-                  <span className="">
-                    {quote}
-                  </span>
-                  <span>&rdquo;</span>
+          {testimonials.map(({ name, company, role, quote, image, imagePositionY }, index) =>
+            index === testimonialIndex && (
+              <div 
+                key={name}
+                className="grid md:grid-cols-5 md:gap-8 md:items-center"  
+              >
+                <div className="aspect-square md:aspect-[9/16] md:col-span-2">
+                  <Image
+                    src={image}
+                    alt={name}
+                    className="size-full object-cover"
+                    style={{
+                      objectPosition: `50% ${imagePositionY * 100}%`, // la posición vertical de la imagen será un porcentaje definido en el [] y la horizontal será el 50%
+                    }}
+                  />
                 </div>
-                <cite className="mt-4 not-italic block">
-                  {name}, {role} at {company}
-                </cite>
-              </blockquote>
-            </div>
-          ))}
+                <blockquote className="md:col-span-3">
+                  <div className="text-3xl md:text-5xl mt-8 md:mt-0">
+                    <span>&ldquo;</span>
+                    <span className="">
+                      {quote}
+                    </span>
+                    <span>&rdquo;</span>
+                  </div>
+                  <cite className="mt-4 md:mt-8 not-italic block md:text-lg">
+                    {name}, {role} at {company}
+                  </cite>
+                </blockquote>
+              </div>
+            ))}
         </div>
 
-        <div>
-          <button>
+        <div className="flex gap-4 mt-6">
+          <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
             </svg>
           </button>
-          <button>
+          <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
