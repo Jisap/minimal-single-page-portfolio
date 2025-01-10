@@ -106,6 +106,39 @@ const Header: FC = () => {
 
   return (
     <header>
+
+      <div className="fixed top-0 left-0 w-full h-full bg-stone-900">
+        <nav className="mt-20 flex flex-col">
+          {navItems.map(({label, href}) => (
+            <a 
+              href={href} 
+              key={label} 
+              className="text-stone-200 border-t border-stone-800 last:border-b py-8"
+            >
+              <div className="container !max-w-full flex items-center justify-between">
+                <span className="text-3xl">
+                  {label}
+                </span>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  strokeWidth="1.5" 
+                  stroke="currentColor" 
+                  className="size-6"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" 
+                  />
+                </svg>
+              </div>
+            </a>
+          ))}
+        </nav>
+      </div>
+
       <div className="fixed top-0 left-0 w-full mix-blend-difference backdrop-blur-md">
         <div className="container !max-w-full">
           <div className="flex justify-between h-20 items-center">
@@ -144,7 +177,6 @@ const Header: FC = () => {
                     ref={topLineScope}
                     style={{
                       transformOrigin: "12px 8px",
-                      //transform: "translateY(4px) rotate(45deg)"
                     }}
                   />
                   <motion.rect 
@@ -156,7 +188,6 @@ const Header: FC = () => {
                     ref={bottomLineScope} 
                     style={{
                       transformOrigin: "12px 16px",
-                      //transform: "translateY(-4px) rotate(-45deg)"
                     }}
                   />
                   
