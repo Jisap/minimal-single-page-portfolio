@@ -33,6 +33,7 @@ const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [topLineScope, topLineAnimate] = useAnimate();        // animación para la linea superior
   const [bottomLineScope, bottomLineAnimate] = useAnimate();  // animación para la linea inferior
+  const [navScope, navAnimate] = useAnimate();                // animación para el navegador
 
   useEffect(() => {
     if(isOpen){
@@ -65,6 +66,17 @@ const Header: FC = () => {
           }
         ]
       ]);
+
+      navAnimate(
+        navScope.current,
+        {
+          height: "100%"
+        },
+        {
+          duration: 0.7
+        }
+      );
+
     }else{
       topLineAnimate([
         [
@@ -95,19 +107,26 @@ const Header: FC = () => {
           }
         ]
       ])
+
+      navAnimate(navScope.current, { height: 0 })
     }
   },[
     isOpen,
     topLineScope,
     bottomLineScope,
     topLineAnimate,
-    bottomLineAnimate
+    bottomLineAnimate,
+    navScope,
+    navAnimate
   ])
 
   return (
     <header>
 
-      <div className="fixed top-0 left-0 w-full h-full bg-stone-900">
+      <div 
+        ref={navScope}
+        className="fixed top-0 left-0 w-full h-0 overflow-hidden bg-stone-900"
+      >
         <nav className="mt-20 flex flex-col">
           {navItems.map(({label, href}) => (
             <a 
