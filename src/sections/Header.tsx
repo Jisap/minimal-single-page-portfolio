@@ -132,10 +132,10 @@ const Header: FC = () => {
             <a 
               href={href} 
               key={label} 
-              className="text-stone-200 border-t border-stone-800 last:border-b py-8"
+              className="text-stone-200 border-t border-stone-800 last:border-b py-8 group/nav-item relative isolate"
             >
               <div className="container !max-w-full flex items-center justify-between">
-                <span className="text-3xl">
+                <span className="text-3xl group-hover/nav-item:pl-4 transition-all duration-500">
                   {label}
                 </span>
                 <svg 
@@ -153,6 +153,7 @@ const Header: FC = () => {
                   />
                 </svg>
               </div>
+              <div className="absolute w-full h-0 bottom-0 bg-stone-800 group-hover/nav-item:h-full transition-all duration-500 -z-10"></div>
             </a>
           ))}
         </nav>
