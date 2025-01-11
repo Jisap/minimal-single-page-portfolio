@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, useEffect, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import Button from "@/components/Button";
 import { motion, useAnimate } from "motion/react";
 
@@ -120,6 +120,19 @@ const Header: FC = () => {
     navAnimate
   ])
 
+  const handleClickMobileNavitem = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const url = new URL(e.currentTarget.href);     // creates a new URL object
+    const hash = url.hash                          // gets the hash value
+    const target = document.querySelector(hash);   // finds the element with the hash value
+    if(!target) return;
+
+    target.scrollIntoView({                        // scrolls to the element
+      behavior: "smooth",
+    });
+  }
+
   return (
     <header>
 
@@ -133,6 +146,7 @@ const Header: FC = () => {
               href={href} 
               key={label} 
               className="text-stone-200 border-t border-stone-800 last:border-b py-8 group/nav-item relative isolate"
+              onClick={handleClickMobileNavitem}
             >
               <div className="container !max-w-full flex items-center justify-between">
                 <span className="text-3xl group-hover/nav-item:pl-4 transition-all duration-500">
