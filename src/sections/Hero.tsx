@@ -132,7 +132,7 @@ const Hero: FC = () => {
         </div>
       </div>
       <div 
-        className="h-[200vh]"
+        className="md:h-[200vh]"
         ref={scrollingDiv}
       ></div>
     </section>
