@@ -31,7 +31,7 @@ const Intro: FC = () => {
         delay:stagger(0.2)
       }
     )}
-  },[inView])
+  },[inView, animate, scope])
 
   return (
     <section 

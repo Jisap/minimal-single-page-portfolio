@@ -7,7 +7,7 @@
 }
 
 .line {
-  @apply overflow-hidden;
+  @apply overflow-hidden; /* Cada palabra se desplaza hacia abajo (translate-y-full) y, gracias a overflow-hidden, está completamente oculta al inicio.*/
 }
 
 .word {
