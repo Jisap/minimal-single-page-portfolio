@@ -62,7 +62,7 @@ const Testimonials: FC = () => {
         <motion.span 
           className="whitespace-nowrap"
           style={{
-            x: transformTop
+            x: transformBottom
           }}
         >
           Some nice words from my past clients
@@ -70,7 +70,7 @@ const Testimonials: FC = () => {
         <motion.span 
           className="whitespace-nowrap self-end text-red-orange-500"
           style={{
-            x: transformBottom
+            x: transformTop
           }}
         >
           Some nice words from my past clients
