@@ -48,8 +48,8 @@ const Testimonials: FC = () => {
     offset: ["start end", "end start"]
   });
 
-  const transformTop = useTransform(scrollYProgress, [0,1], ['0%', '-15%']);   // Transforma el desplazamiento del scroll en un valor horizontal de 0 a -15% ( a la izquierda) 
-  const transformBottom = useTransform(scrollYProgress, [0,1], ['0%', '15%']); // Transforma el desplazamiento del scroll en un valor horizontal de 0 a 15% ( a la derecha)
+  const transformTop = useTransform(scrollYProgress, [0,1], ['0%', '15%']);   // Transforma el desplazamiento del scroll en un valor horizontal de 0 a 15% ( a la derecha ) 
+  const transformBottom = useTransform(scrollYProgress, [0,1], ['0%', '-15%']); // Transforma el desplazamiento del scroll en un valor horizontal de 0 a -15% ( a la izquierda )
 
   const testimonialIndex = 0;
 
@@ -62,7 +62,7 @@ const Testimonials: FC = () => {
         <motion.span 
           className="whitespace-nowrap"
           style={{
-            x: transformBottom
+            x: transformTop
           }}
         >
           Some nice words from my past clients
@@ -70,7 +70,7 @@ const Testimonials: FC = () => {
         <motion.span 
           className="whitespace-nowrap self-end text-red-orange-500"
           style={{
-            x: transformTop
+            x: transformBottom
           }}
         >
           Some nice words from my past clients
