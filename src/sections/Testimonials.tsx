@@ -6,6 +6,7 @@ import image2 from "@/assets/images/testimonial-2.jpg";
 import image3 from "@/assets/images/testimonial-3.jpg";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
+import Testimonial from "@/components/Testimonial";
 
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -80,33 +81,15 @@ const Testimonials: FC = () => {
         <div className="mt-20">
           {testimonials.map(({ name, company, role, quote, image, imagePositionY }, index) =>
             index === testimonialIndex && (
-              <div 
+              <Testimonial 
                 key={name}
-                className="grid md:grid-cols-5 md:gap-8 lg:gap-16  md:items-center"  
-              >
-                <div className="aspect-square md:aspect-[9/16] md:col-span-2">
-                  <Image
-                    src={image}
-                    alt={name}
-                    className="size-full object-cover"
-                    style={{
-                      objectPosition: `50% ${imagePositionY * 100}%`, // la posición vertical de la imagen será un porcentaje definido en el [] y la horizontal será el 50%
-                    }}
-                  />
-                </div>
-                <blockquote className="md:col-span-3">
-                  <div className="text-3xl md:text-5xl lg:text-6xl mt-8 md:mt-0">
-                    <span>&ldquo;</span>
-                    <span className="">
-                      {quote}
-                    </span>
-                    <span>&rdquo;</span>
-                  </div>
-                  <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl">
-                    {name}, {role} at {company}
-                  </cite>
-                </blockquote>
-              </div>
+                quote={quote}
+                name={name}
+                role={role}
+                company={company}
+                imagePositionY={imagePositionY}
+                image={image}
+              />
             ))}
         </div>
 
