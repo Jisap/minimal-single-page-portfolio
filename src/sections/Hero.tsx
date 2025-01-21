@@ -7,13 +7,14 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import SplitType from "split-type";
 import { useAnimate, motion, stagger, useScroll, useTransform } from "motion/react";
+import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 
 
 
 const Hero: FC = () => {
 
-  const [titleScope, titleAnimate ] = useAnimate();                            // titleScope es la Ref para el elemento a animar con titleAnimate
+  //const [titleScope, titleAnimate ] = useAnimate();                            // titleScope es la Ref para el elemento a animar con titleAnimate
   const scrollingDiv = useRef<HTMLDivElement>(null);                           // Controla el scroll del div
 
   const { scrollYProgress } = useScroll({
@@ -23,19 +24,11 @@ const Hero: FC = () => {
 
   const portraitWidth = useTransform(scrollYProgress, [0,1], ['100%', '240%']) // Transforma el ancho del div de la imagen en función del scroll del div "scrollingDiv"
 
-  useEffect(() => {
-    new SplitType(titleScope.current, {                                        // SplitType crea un div con cada linea y un span dentro por cada palabra de la linea con las clases line and word
-      types: "lines,words",
-      tagName: "span"
-    });
+  const {scope, entranceAnimation} = useTextRevealAnimation();
 
-    titleAnimate(titleScope.current.querySelectorAll(".word"),{                // Aplica una animación de traslación en el eje Y desde 0 a 100 (css global)
-      transform: "translateY(0)" 
-    },{
-      duration: .5,
-      delay: stagger(.2)
-    })
-  },[])
+  useEffect(() => {
+    entranceAnimation()
+  },[entranceAnimation]);
 
   return (
     <section>
@@ -43,7 +36,7 @@ const Hero: FC = () => {
         <div className="md:col-span-7 flex flex-col justify-center">
           <div className="container !max-w-full">
             <motion.h1 
-              ref={titleScope}
+              ref={scope}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-5xl md:text-6xl lg:text-7xl mt-40 md:mt-0"
