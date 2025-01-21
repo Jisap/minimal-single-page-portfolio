@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import { twMerge } from "tailwind-merge";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useEffect } from "react";
+import SplitType from "split-type";
+import { useAnimate } from "motion/react";
+import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 
 const Testimonial = ( props:{
@@ -16,6 +19,20 @@ const Testimonial = ( props:{
 
   const { name, company, role, quote, image, imagePositionY, className, ...rest } = props
     
+  const { 
+    scope: quoteScope,                 // Ref
+    entranceAnimation: quoteAnimate    // Función de animación en la ref
+  } = useTextRevealAnimation();
+
+  useEffect(() => {
+    quoteAnimate();
+  }, [])
+  
+
+  const [citeScope, citeAnimate] = useAnimate();
+
+ 
+
   return (
       <div
         className={twMerge(
@@ -35,11 +52,14 @@ const Testimonial = ( props:{
           />
         </div>
         <blockquote className="md:col-span-3">
-          <div className="text-3xl md:text-5xl lg:text-6xl mt-8 md:mt-0">
+          <div 
+            ref={quoteScope}  
+            className="text-3xl md:text-5xl lg:text-6xl mt-8 md:mt-0"
+          >
             <span>&ldquo;</span>
-            <span className="">
+            
               {quote}
-            </span>
+            
             <span>&rdquo;</span>
           </div>
           <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl">
