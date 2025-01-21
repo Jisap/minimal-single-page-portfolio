@@ -24,12 +24,17 @@ const Testimonial = ( props:{
     entranceAnimation: quoteAnimate    // Función de animación en la ref
   } = useTextRevealAnimation();
 
-  useEffect(() => {
-    quoteAnimate();
-  }, [])
-  
+  const {
+    scope: citeScope,
+    entranceAnimation: citeAnimate
+  } = useTextRevealAnimation()
 
-  const [citeScope, citeAnimate] = useAnimate();
+  useEffect(() => {
+    quoteAnimate().then(() => {
+      citeAnimate();
+    })
+  }, []);
+  
 
  
 
@@ -62,7 +67,10 @@ const Testimonial = ( props:{
             
             <span>&rdquo;</span>
           </div>
-          <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl">
+          <cite 
+            ref={citeScope}
+            className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl"
+          >
             {name}, {role} at {company}
           </cite>
         </blockquote>
