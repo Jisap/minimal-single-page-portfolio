@@ -2,7 +2,7 @@ import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import { twMerge } from "tailwind-merge";
 import { HTMLAttributes, useEffect } from "react";
-import { usePresence } from "motion/react";
+import { motion, usePresence } from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 
@@ -57,7 +57,16 @@ const Testimonial = ( props:{
         )}
         {...rest}
       >
-        <div className="aspect-square md:aspect-[9/16] md:col-span-2">
+        <div className="aspect-square md:aspect-[9/16] md:col-span-2 relative">
+          {/* Efecto cortina */}
+          <motion.div
+            className="absolute h-full bg-stone-900"
+            initial={{ width: "100%"}}
+            animate={{ width: 0}}
+            exit={{ width: "100%" }}
+            transition={{ duration: 0.5 }}
+          >
+          </motion.div>
           <Image
             src={image}
             alt={name}
