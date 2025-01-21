@@ -2,8 +2,7 @@ import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import { twMerge } from "tailwind-merge";
 import { HTMLAttributes, useEffect } from "react";
-import SplitType from "split-type";
-import { useAnimate } from "motion/react";
+import { usePresence } from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 
@@ -20,22 +19,34 @@ const Testimonial = ( props:{
   const { name, company, role, quote, image, imagePositionY, className, ...rest } = props
     
   const { 
-    scope: quoteScope,                 // Ref
-    entranceAnimation: quoteAnimate    // Función de animación en la ref
+    scope: quoteScope,                           // Ref
+    entranceAnimation: quoteEntranceAnimation,   // Función de entrada de la animación en la ref
+    exitAnimation: quoteExitAnimation,           // Función de salida de la animación en la ref     
   } = useTextRevealAnimation();
 
   const {
     scope: citeScope,
-    entranceAnimation: citeAnimate
+    entranceAnimation: citeEntranceAnimation,
+    exitAnimation: citeExitAnimation,
   } = useTextRevealAnimation()
 
-  useEffect(() => {
-    quoteAnimate().then(() => {
-      citeAnimate();
-    })
-  }, []);
-  
+  const [isPresent, safeToRemove] = usePresence(); // Te dice si el componente envuelto con AnimatePresence está presente en el DOM o ha sido marcado para salir.
 
+  useEffect(() => {
+    if(isPresent){
+      quoteEntranceAnimation().then(() => {
+        citeEntranceAnimation();
+      })
+    } else {
+      Promise.all([
+        quoteExitAnimation(),
+        citeExitAnimation(),
+      ]).then(() => {
+        safeToRemove();
+      })
+    }
+  }, [isPresent]);
+  
  
 
   return (

@@ -93,6 +93,7 @@ const Testimonials: FC = () => {
       </h2>
       <div className="container">
         <div className="mt-20">
+          {/* Envuelve los elementos que quieres animar al entrar o salir. */}
           <AnimatePresence
             mode="wait"
             initial={false}
