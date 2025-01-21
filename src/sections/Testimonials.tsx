@@ -115,7 +115,8 @@ const Testimonials: FC = () => {
 
         <div className="flex gap-4 mt-6 lg:mt-10">
           <button 
-            className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full"
+            className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full 
+            hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500 transition-all duration-300"
             onClick={handleClickPrev}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
@@ -123,7 +124,8 @@ const Testimonials: FC = () => {
             </svg>
           </button>
           <button 
-            className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full"
+            className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full
+            hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500 transition-all duration-300"
             onClick={handleClickNext}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">

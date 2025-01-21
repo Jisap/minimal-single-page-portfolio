@@ -45,7 +45,7 @@ const Testimonial = ( props:{
         safeToRemove();
       })
     }
-  }, [isPresent]);
+  }, [isPresent, quoteEntranceAnimation, citeEntranceAnimation, quoteExitAnimation, citeExitAnimation, safeToRemove]);
   
  
 
