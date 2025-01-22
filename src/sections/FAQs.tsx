@@ -53,7 +53,9 @@ const FAQs: FC = () => {
                 "absolute h-0 w-full bottom-0 left-0 bg-stone-300 -z-10 group-hover/faq:h-full transition-all duration-700",
                 faqIndex === selectedIndex && "h-full" // mantiene el sombreado de la pregunta seleccionada
               )}></div>
-              <div className="flex items-center justify-between gap-4">
+              <div className={twMerge("flex items-center justify-between gap-4 transition-all duration-700 group-hover/faq:lg:px-8",
+                faqIndex === selectedIndex && "lg:px-8"
+              )}>
                 <div className="text-2xl md:text-3xl lg:text-4xl">{question}</div>
                 <div className={twMerge(
                   "inline-flex items-center justify-center size-11 border border-stone-400 rounded-full shrink-0 transition duration-300 bg-stone-200",
@@ -78,7 +80,7 @@ const FAQs: FC = () => {
               <AnimatePresence>
                 {faqIndex === selectedIndex && (
                   <motion.div
-                    className="overflow-hidden"                           // animación de altura de la respuesta 
+                    className="overflow-hidden lg:px-8"                           // animación de altura de la respuesta 
                     initial={{height: 0}}
                     animate={{height: "auto"}}
                     exit={{ height: 0 }}
