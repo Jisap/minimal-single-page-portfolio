@@ -2,6 +2,7 @@
 
 import { FC, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { twMerge } from "tailwind-merge";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const faqs = [
@@ -50,7 +51,10 @@ const FAQs: FC = () => {
             >
               <div className="flex items-center justify-between gap-4">
                 <div className="text-2xl md:text-3xl lg:text-4xl">{question}</div>
-                <div className="inline-flex items-center justify-center size-11 border border-stone-400 rounded-full shrink-0">
+                <div className={twMerge(
+                  "inline-flex items-center justify-center size-11 border border-stone-400 rounded-full shrink-0 transition duration-500",
+                  selectedIndex === faqIndex && "rotate-45"  
+                )}>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     fill="none" 
