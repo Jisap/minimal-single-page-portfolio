@@ -5,8 +5,7 @@ import { FC, useEffect, useRef } from "react";
 import heroImage from "@/assets/images/hero-image.jpg";
 import Image from "next/image";
 import Button from "@/components/Button";
-import SplitType from "split-type";
-import { useAnimate, motion, stagger, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 
@@ -14,7 +13,6 @@ import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 const Hero: FC = () => {
 
-  //const [titleScope, titleAnimate ] = useAnimate();                            // titleScope es la Ref para el elemento a animar con titleAnimate
   const scrollingDiv = useRef<HTMLDivElement>(null);                           // Controla el scroll del div
 
   const { scrollYProgress } = useScroll({

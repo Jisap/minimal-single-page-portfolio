@@ -1,4 +1,7 @@
-import { FC } from "react";
+"use client"
+
+import { FC, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const faqs = [
@@ -25,13 +28,26 @@ const faqs = [
 ];
 
 const FAQs: FC = () => {
+
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   return (
     <section className="section" id="faqs">
       <div className="container">
         <h2 className="text-4xl md:text-7xl lg:text-8xl">FAQs</h2>
         <div className="mt-10 md:mt-16 lg:mt-20">
-          {faqs.map(({ question, answer }) => (
-            <div key={question} className="border-t border-stone-400 border-dotted py-6 md:py-8 lg:py-10 last:border-b">
+          {faqs.map(({ question, answer }, faqIndex) => (
+            <div 
+              key={question} 
+              className="border-t border-stone-400 border-dotted py-6 md:py-8 lg:py-10 last:border-b"
+              onClick={() => {
+                if(faqIndex === selectedIndex) { // if the question is already selected, deselect it
+                  setSelectedIndex(null)
+                }else{
+                  setSelectedIndex(faqIndex)     // if the question is not selected, select it
+                }
+              }}
+            >
               <div className="flex items-center justify-between gap-4">
                 <div className="text-2xl md:text-3xl lg:text-4xl">{question}</div>
                 <div className="inline-flex items-center justify-center size-11 border border-stone-400 rounded-full shrink-0">
@@ -51,6 +67,21 @@ const FAQs: FC = () => {
                   </svg>
                 </div>
               </div>
+              <AnimatePresence>
+                {faqIndex === selectedIndex && (
+                  <motion.div
+                    className="overflow-hidden"
+                    initial={{height: 0}}
+                    animate={{height: "auto"}}
+                    exit={{ height: 0 }}
+                    transition={{duration: 0.7, ease: "easeInOut"}}
+                  >
+                    <p className="text-xl mt-4">
+                      {answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>
