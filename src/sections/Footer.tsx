@@ -1,5 +1,9 @@
-import { FC } from "react";
+"use client"
+
+import { FC, useEffect } from "react";
 import Button from "@/components/Button";
+import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
+import { useInView } from "motion/react";
 
 
 const navItems = [
@@ -26,6 +30,18 @@ const navItems = [
 ]
 
 const Footer: FC = () => {
+
+  const { scope, entranceAnimation } = useTextRevealAnimation();
+  const inView = useInView(scope, {       //inView is a boolean that will be true when the element is in view
+    once: true,                           //the animation will only run once
+  });  
+  
+  useEffect(() => {
+    if(inView){
+      entranceAnimation()
+    }
+  },[inView, entranceAnimation])
+
   return (
     <footer className="bg-stone-900 text-white" id="contact">
       <div className="container">
@@ -39,7 +55,10 @@ const Footer: FC = () => {
 
           <div className="grid md:grid-cols-3 md:items-center">
             <div className="md:col-span-2">
-              <h2 className="text-4xl md:text-7xl lg:text-8xl mt-8 font-extralight">
+              <h2 
+                className="text-4xl md:text-7xl lg:text-8xl mt-8 font-extralight"
+                ref={scope}
+              >
                 Enough talk. Let&apos;s make something great together.
               </h2>
 
