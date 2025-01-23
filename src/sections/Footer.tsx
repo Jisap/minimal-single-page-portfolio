@@ -47,7 +47,7 @@ const Footer: FC = () => {
       <div className="container">
         <div className="section">
           <div className="flex items-center gap-3">
-            <div className="size-3 rounded-full bg-green-400"></div>
+            <div className="size-3 rounded-full bg-green-400 animate-pulse"></div>
             <span className="uppercase">
               One spot available for next month
             </span>
@@ -66,20 +66,38 @@ const Footer: FC = () => {
                 variant="secondary"
                 className="mt-8"
                 iconAfter={
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    strokeWidth="1.5" 
-                    stroke="currentColor" 
-                    className="size-6"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" 
-                    />
-                  </svg> 
+                  <div className="size-6 overflow-hidden">
+                    <div className="w-12 h-6 flex transition-transform duration-500 group-hover/button:-translate-x-1/2">
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        strokeWidth="1.5" 
+                        stroke="currentColor" 
+                        className="size-6"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" 
+                        />
+                      </svg> 
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                        />
+                      </svg> 
+                    </div>
+                  </div>
                 }>
                 info@alextaylor.com
               </Button>
